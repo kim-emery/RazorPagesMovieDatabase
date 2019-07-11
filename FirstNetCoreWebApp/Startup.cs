@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using FirstNetCoreWebApp.Models;
 
 namespace FirstNetCoreWebApp {
     public class Startup {
@@ -28,6 +30,9 @@ namespace FirstNetCoreWebApp {
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            // added by the scaffolder! dependency injection example
+            services.AddDbContext<FirstNetCoreWebAppContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("FirstNetCoreWebAppContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
