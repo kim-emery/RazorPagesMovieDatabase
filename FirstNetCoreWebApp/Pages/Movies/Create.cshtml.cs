@@ -18,15 +18,15 @@ namespace FirstNetCoreWebApp.Pages.Movies
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet() //initialises any state needed for the page. create page doesnt need any so Page is returned
         {
-            return Page();
+            return Page(); // the Page method creates a PageResult object that renders the Create.cshtml page
         }
 
-        [BindProperty]
+        [BindProperty] // Movie property below uses the BindProperty attribute to opt-in model binding (turn it on), when Create form posts the form values, the ASP.NET core runtime binds the posted values to the Movie model/
         public Movie Movie { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync() // OnPostAsyn method is urn when the pages posts form dara
         {
             if (!ModelState.IsValid)
             {
